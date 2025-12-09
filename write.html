@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Write Me a Note • Peter & Abree</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    
+    <style>
+        .write-wrapper {
+            margin-top: 2rem;
+            max-width: 600px;
+        }
+
+        .write-card {
+            background: rgba(255, 255, 255, 0.97);
+            border-radius: 22px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 140px;
+            border-radius: 18px;
+            padding: 0.8rem;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            font-size: 1rem;
+            font-family: "Poppins";
+            outline: none;
+            resize: vertical;
+        }
+
+        textarea:focus {
+            border-color: var(--accent-2);
+            box-shadow: 0 0 0 2px rgba(123, 140, 255, 0.25);
+        }
+
+        .note-list {
+            margin-top: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .saved-note {
+            background: #fff4fb;
+            padding: 1rem;
+            border-radius: 18px;
+            border: 1px dashed var(--accent);
+        }
+
+        .saved-note small {
+            display: block;
+            margin-top: 0.4rem;
+            color: var(--text-muted);
+            font-size: 0.75rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="site-header">
+        <div class="nav-inner">
+            <div class="brand">
+                <div class="brand-icon">♡</div>
+                <div class="brand-text">Peter &amp; Abree</div>
+            </div>
+            <nav class="nav-links">
+                <a href="index.html" class="active">Home</a>
+                <a href="reasons.html">Reasons I Like You</a>
+                <a href="notes.html">Notes to You</a>
+                <a href="secret.html">Special</a>
+                <a href="write.html">Write</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="page">
+        <h2 class="section-title">💌 Write Me a Note</h2>
+        <p class="section-subtitle">Anything you want to tell me… I’ll save it forever. 💜</p>
+
+        <div class="write-wrapper">
+            <div class="write-card">
+                <label>Your Note:</label>
+                <textarea id="note-input" placeholder="Write something sweet..."></textarea>
+
+                <button class="btn" style="margin-top: 0.8rem;" id="save-note-btn">
+                    Save Note 💘
+                </button>
+
+                <div id="save-status" class="secret-status" style="margin-top: 0.5rem;"></div>
+            </div>
+
+            <div class="note-list" id="note-list"></div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        I’ll treasure anything you write. 💌  
+    </footer>
+
+    <script>
+        const input = document.getElementById("note-input");
+        const btn = document.getElementById("save-note-btn");
+        const statusEl = document.getElementById("save-status");
+        const noteList = document.getElementById("note-list");
+
+        // Load existing notes from localStorage
+        const existingNotes = JSON.parse(localStorage.getItem("abreeNotes") || "[]");
+        existingNotes.forEach(addNoteToPage);
+
+        btn.addEventListener("click", () => {
+            const text = input.value.trim();
+            if (!text) {
+                statusEl.textContent = "Write something first 😄";
+                statusEl.className = "secret-status error";
+                return;
+            }
+
+            const note = {
+                text,
+                date: new Date().toLocaleString()
+            };
+
+            existingNotes.push(note);
+            localStorage.setItem("abreeNotes", JSON.stringify(existingNotes));
+
+            addNoteToPage(note);
+
+            input.value = "";
+            statusEl.textContent = "Saved! 💜";
+            statusEl.className = "secret-status success";
+        });
+
+        function addNoteToPage(note) {
+            const div = document.createElement("div");
+            div.className = "saved-note";
+            div.innerHTML = `
+                ${note.text}
+                <small>Written on ${note.date}</small>
+            `;
+            noteList.prepend(div);
+        }
+    </script>
+
+</body>
+
+</html>
