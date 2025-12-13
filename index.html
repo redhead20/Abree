@@ -55,7 +55,6 @@
 
             <div class="hero-card">
                 <div class="hero-photo">
-                    <!-- Replace this text by adding an actual photo in /images and using <img> -->
                     <div class="hero-photo">
                         <div class="hero-slideshow">
                             <img src="images/rotate1.png" class="slide active">
@@ -64,10 +63,8 @@
                             <img src="images/rotate4.png" class="slide">
                         </div>
                     </div>
-
-
-                    </span>
                 </div>
+
                 <div class="info-row" style="margin-top: 0.8rem;">
                     <div class="info-chip">I Love You ❤️</div>
                     <div class="info-chip">Inside joke: Guess What?</div>
@@ -75,6 +72,24 @@
                 </div>
             </div>
         </section>
+
+        <!-- ⭐ TODAY'S NOTE SECTION (ADDED) -->
+        <section class="section today-note">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="icon">📝</span>
+                    <span>Today’s Note</span>
+                </h2>
+                <p class="section-subtitle">
+                    Just something I wanted you to hear today.
+                </p>
+            </div>
+
+            <div class="note-card">
+                <p class="note-text" id="daily-note"></p>
+            </div>
+        </section>
+        <!-- ⭐ END TODAY'S NOTE -->
 
         <section class="section">
             <div class="section-header">
@@ -121,6 +136,7 @@
     <footer class="site-footer">
         Made with a ridiculous amount of ❤️ by Peter.
     </footer>
+
     <script>
         let slideIndex = 0;
         const slides = document.querySelectorAll(".hero-slideshow .slide");
@@ -131,9 +147,33 @@
             slides[slideIndex].classList.add("active");
         }
 
-        // Change images every 4 seconds
         setInterval(showNextSlide, 4000);
     </script>
+
+    <!-- ⭐ TODAY'S NOTE SCRIPT (ADDED) -->
+    <script>
+        const notes = [
+            "You are safe, loved, and doing better than you think.",
+            "It’s okay to rest. You don’t have to carry everything today.",
+            "I hope you’re being kind to yourself — you deserve it.",
+            "Even on quiet days, you matter more than you realize.",
+            "You don’t have to be perfect to be deeply loved.",
+            "I’m proud of you, especially on the days no one sees.",
+            "You’re not behind. You’re right where you need to be.",
+            "If today feels heavy, I’m holding space for you.",
+            "You are allowed to take things one step at a time.",
+            "You make the world softer just by being in it."
+        ];
+
+        const dailyNote = document.getElementById("daily-note");
+
+        if (dailyNote) {
+            const randomIndex = Math.floor(Math.random() * notes.length);
+            dailyNote.textContent = notes[randomIndex];
+        }
+    </script>
+    <!-- ⭐ END TODAY'S NOTE SCRIPT -->
+
 </body>
 
 </html>

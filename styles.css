@@ -456,3 +456,23 @@ body {
     bottom: -1.2rem;
     right: 0.3rem;
 }
+
+/* Make the secret password input bigger */
+.secret-input-row input {
+    width: 100%;
+    max-width: 420px;
+    padding: 14px 18px;
+    font-size: 1.1rem;
+    border-radius: 12px;
+}
+
+.today-note .note-card {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.today-note .note-card {
+    margin-top: 1rem;
+}
