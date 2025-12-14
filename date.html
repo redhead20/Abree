@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Date Idea Generator • Peter & Abree</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+<header class="site-header">
+  <div class="nav-inner">
+    <div class="brand">
+      <div class="brand-icon">♡</div>
+      <div class="brand-text">Peter &amp; Abree</div>
+    </div>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="reasons.html">Reasons I Like You</a>
+      <a href="notes.html">Notes to You</a>
+      <a href="date.html" class="active">Dates</a>
+      <a href="secret.html">Special</a>
+    </nav>
+  </div>
+</header>
+
+<main class="page">
+
+  <section class="section">
+    <div class="section-header">
+      <h2 class="section-title">
+        <span class="icon">🎲</span>
+        <span>Date Idea Generator</span>
+      </h2>
+      <p class="section-subtitle">
+        Click the button and let fate choose our next in-person date 💕
+      </p>
+    </div>
+
+    <div class="hero-card" style="max-width: 520px; margin: 0 auto; text-align: center;">
+      <p style="font-size: 1.05rem; margin-bottom: 1.3rem;">
+        No repeats — every click gives a new idea.
+      </p>
+
+      <button class="btn" id="generate-date">
+        Pick Our Date 💘
+      </button>
+
+      <div id="date-result" style="
+        margin-top: 1.6rem;
+        font-size: 1.15rem;
+        font-weight: 600;
+        color: #c2185b;
+        min-height: 2.4rem;
+      ">
+      </div>
+
+      <p class="endtext">
+        Any of these would be perfect as long as it’s with you 🤍
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  Every date is better when it’s with you.
+</footer>
+
+<script>
+  const dateIdeas = [
+    "Go get ice cream together 🍦",
+    "Take a sunset walk and talk 🌅",
+    "Go on a late-night drive with music 🎶",
+    "Have a picnic date 🧺",
+    "Go bowling together 🎳",
+    "Go out to dinner and dress up 🍽️",
+    "Watch a movie in theaters 🎬",
+    "Go to Target or Walmart and buy things for each other 🛒",
+    "Go stargazing ✨",
+    "Cook a meal together 🍳",
+    "Go get coco and sit for hours ☕",
+    "Take cute couple photos 📸",
+    "Go on a small adventure with no plan 🗺️",
+    "Visit a place that means something to us 💞",
+    "Hold hands and just exist together 🤍"
+  ];
+
+  let remainingDates = [...dateIdeas];
+
+  const button = document.getElementById("generate-date");
+  const result = document.getElementById("date-result");
+
+  button.addEventListener("click", () => {
+    // Reset list after all dates are shown
+    if (remainingDates.length === 0) {
+      remainingDates = [...dateIdeas];
+    }
+
+    const randomIndex = Math.floor(Math.random() * remainingDates.length);
+    const chosenDate = remainingDates[randomIndex];
+
+    remainingDates.splice(randomIndex, 1);
+    result.textContent = chosenDate;
+  });
+</script>
+
+</body>
+</html>
